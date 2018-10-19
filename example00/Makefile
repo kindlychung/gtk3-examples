@@ -1,4 +1,4 @@
-CC ?= gcc
+CC = gcc
 PKGCONFIG = $(shell which pkg-config)
 CFLAGS = $(shell $(PKGCONFIG) --cflags gtk+-3.0)
 LIBS = $(shell $(PKGCONFIG) --libs gtk+-3.0)
@@ -10,10 +10,10 @@ OBJS = $(SRC:.c=.o)
 all: example0
 
 %.o: %.c
-	$(CC) -c -o $(@F) $(CFLAGS) $<
+	$(CC) $< -c -o $(@F) $(CFLAGS) 
 
 example0: $(OBJS)
-	$(CC) -o $(@F) $(LIBS) $(OBJS)
+	$(CC) $(OBJS) -o $(@F) $(LIBS) 
 
 clean:
 	rm -f $(OBJS)
